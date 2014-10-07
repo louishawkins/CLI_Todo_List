@@ -16,15 +16,15 @@ do {
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
-    $input = trim(fgets(STDIN));
+    $input = trim(strtolower((fgets(STDIN))));
 
     // Check for actionable input
-    if ($input == 'N') {
+    if ($input == 'n') {
         // Ask for entry
         echo 'Enter item: ';
         // Add entry to list array
         $items[] = trim(fgets(STDIN));
-    } elseif ($input == 'R') {
+    } elseif ($input == 'r') {
         // Remove which item?
         echo 'Enter item number to remove: ';
         // Get array key
@@ -33,7 +33,7 @@ do {
         unset($items[$key]);
     }
 // Exit when input is (Q)uit
-} while ($input != 'Q');
+} while ($input != 'q');
 
 // Say Goodbye!
 echo "Goodbye!\n";
