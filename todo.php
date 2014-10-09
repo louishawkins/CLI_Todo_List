@@ -19,7 +19,7 @@ function getInput($lower = false) {
         case true:
             $input = trim(strtolower(fgets(STDIN)));
             break;
-         case false: 
+        case false: 
             $input = trim(fgets(STDIN));
             break;
     }
@@ -39,13 +39,13 @@ function newItem($items){
         $items[] = getInput();
     }
     else {
-        echo '(F)irst or (L)ast? ';
+        echo '(B)eginning or (E)nd? ';
         $choice = getInput(true);
         switch($choice){
-            case 'f':
+            case 'b':
                 array_unshift($items, getInput());
                 break;
-            case 'l':
+            case 'e':
                 array_push($items, getInput());
                 break;
             default:
@@ -94,28 +94,28 @@ do {
 
     switch ($input) {
     // Check for actionable input
-    case "n":
-        $items = newItem($items);
-        break;
-    case "r":
-        // removeItem();
-        // Remove which item?
-        echo 'Enter item number to remove: ';
-        // Get array key
-        $key = getInput();
-        //$key = $toRemove - 1;
-        // Remove from array
-        unset($items[keyConvert($key)]);
-        break;
-    case "s":
-        $items = sort_items($items);
-        break;
-    case "f":
-        array_shift($items);
-        break;
-    case "l":
-        array_pop($items);
-        break;
+        case "n":
+            $items = newItem($items);
+            break;
+        case "r":
+            // removeItem();
+            // Remove which item?
+            echo 'Enter item number to remove: ';
+            // Get array key
+            $key = getInput();
+            //$key = $toRemove - 1;
+            // Remove from array
+            unset($items[keyConvert($key)]);
+            break;
+            case "s":
+            $items = sort_items($items);
+            break;
+        case "f":
+            array_shift($items);
+            break;
+        case "l":
+            array_pop($items);
+            break;
     }
 // Exit when input is (Q)uit
 } while ($input != 'q');
