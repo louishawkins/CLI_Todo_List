@@ -1,8 +1,8 @@
 <?php
 
 // Create array to hold list of todo items
-$items = array();
-
+//$items = array('cat', 'dog', 'goat');
+$items = [];
 function listItems($items) {
     $_list = "";
     foreach ($items as $key => $item) {
@@ -31,6 +31,36 @@ function keyConvert($key) {
     return $key;
 }
 
+function newItem($items){
+    // Ask for entry
+    echo 'Enter item: ';
+    // Add entry to list array
+    if(empty($items) == true) {
+        $items[] = getInput();
+    }
+    else {
+        echo '(F)irst or (L)ast? ';
+        $choice = getInput(true);
+        switch($choice){
+            case 'f':
+                array_unshift($items, getInput());
+                break;
+            case 'l':
+                array_push($items, getInput());
+                break;
+            default:
+                $items[] = getInput();
+                break;
+        }
+    }
+    return $items;
+}
+
+
+function removeItem() {
+    // potential function
+}
+
 function sort_items($items_array) {
     echo '(A)-Z   (Z)-A  (O)rder Entered  (R)everse';
         $sort_type = getInput(true);
@@ -55,24 +85,20 @@ function sort_items($items_array) {
 do {
 
     // Iterate through list items
-    //echo listItems($items);
+    echo listItems($items);
     // Show the menu options
     echo '(N)ew item  (R)emove item  (S)ort  (Q)uit : ';
-
     // Get the input from user
     // Use trim() to remove whitespace and newlines
     $input = getInput(true);
 
     switch ($input) {
-
     // Check for actionable input
     case "n":
-        // Ask for entry
-        echo 'Enter item: ';
-        // Add entry to list array
-        $items[] = getInput();
+        $items = newItem($items);
         continue;
     case "r":
+        // removeItem();
         // Remove which item?
         echo 'Enter item number to remove: ';
         // Get array key
@@ -84,8 +110,6 @@ do {
     case "s":
         $items = sort_items($items);
     }
-
-    echo listItems($items);
 // Exit when input is (Q)uit
 } while ($input != 'q');
 
