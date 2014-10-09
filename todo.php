@@ -96,7 +96,7 @@ do {
     // Check for actionable input
     case "n":
         $items = newItem($items);
-        continue;
+        break;
     case "r":
         // removeItem();
         // Remove which item?
@@ -106,9 +106,16 @@ do {
         //$key = $toRemove - 1;
         // Remove from array
         unset($items[keyConvert($key)]);
-        continue;
+        break;
     case "s":
         $items = sort_items($items);
+        break;
+    case "f":
+        array_shift($items);
+        break;
+    case "l":
+        array_pop($items);
+        break;
     }
 // Exit when input is (Q)uit
 } while ($input != 'q');
