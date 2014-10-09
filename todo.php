@@ -83,24 +83,6 @@ do {
         continue;
     case "s":
         $items = sort_items($items);
-       /* echo '(A)-Z   (Z)-A  (O)rder Entered  (R)everse';
-        $sort_type = getInput(true);
-        switch ($sort_type) {
-            case 'a':
-                asort($items);
-                break;
-            case 'z':
-                arsort($items);
-                break;
-
-            case 'o':
-                ksort($items);
-                break;
-
-            case 'r':
-                krsort($items);
-                break;
-        }*/
     }
 
     echo listItems($items);
