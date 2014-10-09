@@ -31,29 +31,26 @@ function keyConvert($key) {
     return $key;
 }
 
-/*function sort_items($items) {
+function sort_items($items_array) {
     echo '(A)-Z   (Z)-A  (O)rder Entered  (R)everse';
         $sort_type = getInput(true);
         switch ($sort_type) {
             case 'a':
-                //echo sort_menu('a', $items);
-                $items = asort($items);
+                asort($items_array);
                 break;
             case 'z':
-                $items = arsort($items);
+                arsort($items_array);
                 break;
-
             case 'o':
-                $items = ksort($items);
+                ksort($items_array);
                 break;
-
             case 'r':
-                $items = krsort($items);
+                krsort($items_array);
                 break;
         }
-    return $items;
+    return $items_array;
  }       
-*/
+
 // The loop!
 do {
 
@@ -85,8 +82,8 @@ do {
         unset($items[keyConvert($key)]);
         continue;
     case "s":
-   
-        echo '(A)-Z   (Z)-A  (O)rder Entered  (R)everse';
+        $items = sort_items($items);
+       /* echo '(A)-Z   (Z)-A  (O)rder Entered  (R)everse';
         $sort_type = getInput(true);
         switch ($sort_type) {
             case 'a':
@@ -103,7 +100,7 @@ do {
             case 'r':
                 krsort($items);
                 break;
-        }
+        }*/
     }
 
     echo listItems($items);
