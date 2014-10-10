@@ -1,5 +1,4 @@
 <?php
-
 // Create array to hold list of todo items
 //$items = array('cat', 'dog', 'goat');
 $items = [];
@@ -56,13 +55,10 @@ function newItem($items){
     return $items;
 }
 
-
-function removeItem() {
-    // potential function
-}
-
 function sort_items($items_array) {
-    echo '(A)-Z   (Z)-A  (O)rder Entered  (R)everse';
+    echo `clear`;
+    echo "(A)-Z   (Z)-A  (O)rder Entered  (R)everse\n";
+    echo "------------------------------------------\n";
         $sort_type = getInput(true);
         switch ($sort_type) {
             case 'a':
@@ -109,22 +105,26 @@ function save_the_file($filename, $array){
 }
 // The loop!
 do {
-
+    echo `clear`;
+    // Show the menu options
+    echo "(F)ile  s(A)ve  (N)ew item  (R)emove item  (S)ort  (Q)uit\n";
+    echo "---------------------------------------------------------\n";
     // Iterate through list items
     echo listItems($items);
-    // Show the menu options
-    echo '(F)ile  s(A)ve  (N)ew item  (R)emove item  (S)ort  (Q)uit : ';
     // Get the input from user
-    // Use trim() to remove whitespace and newlines
+    echo "\n> ";
     $input = getInput(true);
 
     switch ($input) {
     // Check for actionable input
         case "f":
+            echo `clear`;
             echo "(I)mport File  (O)pen File\n";
+            echo "---------------------------\n";
             $input = getInput(true);
             switch($input) {
                 case "i":
+                    echo `clear`;
                     echo "> data/";
                     $_filename = 'data/' . getInput();
                     $filedata = get_the_file($_filename);
@@ -134,6 +134,7 @@ do {
                     break;
                 case "o":
                     unset($items);
+                    echo `clear`;
                     echo "> data/";
                     $_filename = 'data/' . getInput();
                     $filedata = get_the_file($_filename);
@@ -141,7 +142,6 @@ do {
                         $items[] = $thing;
                     }
                     break;
-                
                 default:
                     break;
             }
@@ -180,7 +180,15 @@ do {
 } while ($input != 'q');
 
 // Say Goodbye!
-echo "Goodbye!\n";
+echo `clear`;
+echo "\n\n\n\n\n\nGoodbye!";
+$i=0;
+while($i<3){
+    echo " . ";
+    usleep(400000);
+    $i++;
+}
+echo `clear`;
 
 // Exit with 0 errors
 exit(0);
