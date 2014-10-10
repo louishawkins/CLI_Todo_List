@@ -81,19 +81,67 @@ function sort_items($items_array) {
     return $items_array;
  }       
 
+function get_the_file($file){
+    //$filename = 'cities.txt';
+    $handle = fopen($file, 'r');
+    $contents = fread($handle, filesize($file));
+    $contentsArray = explode("\n", $contents);
+    fclose($handle);
+    for($i = 0; $i < count($contentsArray); $i++) {
+        $contentsArray[$i] = trim($contentsArray[$i]);
+        if(empty($contentsArray[$i]) == true) {
+            unset($contentsArray[$i]);
+            array_values($contentsArray);
+        }
+        else {}
+    }   
+    return $contentsArray;
+}
+
+function save_the_file($filename, $array){
+
+    $handle = fopen($filename, 'w+');
+    foreach ($array as $item) {
+        fwrite($handle, PHP_EOL . $item);
+    }
+    fclose($handle);
+    return null;
+}
 // The loop!
 do {
 
     // Iterate through list items
     echo listItems($items);
     // Show the menu options
-    echo '(N)ew item  (R)emove item  (S)ort  (Q)uit : ';
+    echo '(F)ile  s(A)ve  (N)ew item  (R)emove item  (S)ort  (Q)uit : ';
     // Get the input from user
     // Use trim() to remove whitespace and newlines
     $input = getInput(true);
 
     switch ($input) {
     // Check for actionable input
+        case "f":
+            echo "(I)mport File\n";
+            $input = getInput(true);
+            switch($input) {
+                case "i":
+                    echo "> data/";
+                    $_filename = 'data/' . getInput();
+                    $filedata = get_the_file($_filename);
+                    foreach($filedata as $thing) {
+                        $items[] = $thing;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case "a":
+            echo "\nFile Name:\n\n";
+            echo "> data/";
+            $_filename = 'data/' . getInput();
+            save_the_file($_filename, $items);
+            break;
         case "n":
             $items = newItem($items);
             break;
