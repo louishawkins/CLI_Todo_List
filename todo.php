@@ -164,6 +164,7 @@ do {
             //$key = $toRemove - 1;
             // Remove from array
             unset($items[keyConvert($key)]);
+            $items = array_values($items);
             break;
             case "s":
             $items = sort_items($items);
