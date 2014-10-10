@@ -105,7 +105,7 @@ function save_the_file($filename, $array){
         fwrite($handle, PHP_EOL . $item);
     }
     fclose($handle);
-    return null;
+    return;
 }
 // The loop!
 do {
@@ -121,7 +121,7 @@ do {
     switch ($input) {
     // Check for actionable input
         case "f":
-            echo "(I)mport File\n";
+            echo "(I)mport File  (O)pen File\n";
             $input = getInput(true);
             switch($input) {
                 case "i":
@@ -132,6 +132,16 @@ do {
                         $items[] = $thing;
                     }
                     break;
+                case "o":
+                    unset($items);
+                    echo "> data/";
+                    $_filename = 'data/' . getInput();
+                    $filedata = get_the_file($_filename);
+                    foreach($filedata as $thing) {
+                        $items[] = $thing;
+                    }
+                    break;
+                
                 default:
                     break;
             }
@@ -158,7 +168,7 @@ do {
             case "s":
             $items = sort_items($items);
             break;
-        case "f":
+        case "x":
             array_shift($items);
             break;
         case "l":
