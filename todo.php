@@ -1,7 +1,19 @@
 <?php
+/* *************************************************
+*   TODO List
+*   By: Louis Hawkins
+*   2014
+*
+*   Basic to-do list application written in 
+*   PHP for command line.
+*
+* **************************************************
+*/
+
+
 // Create array to hold list of todo items
-//$items = array('cat', 'dog', 'goat');
 $items = [];
+
 function listItems($items) {
     $_list = "";
     foreach ($items as $key => $item) {
@@ -13,7 +25,6 @@ function listItems($items) {
 }
 
 function getInput($lower = false) {
-    
     switch($lower) {
         case true:
             $input = trim(strtolower(fgets(STDIN)));
@@ -36,8 +47,7 @@ function newItem($items){
     // Add entry to list array
     if(empty($items) == true) {
         $items[] = getInput();
-    }
-    else {
+    } else {
         echo '(B)eginning or (E)nd? ';
         $choice = getInput(true);
         switch($choice){
@@ -73,12 +83,11 @@ function sort_items($items_array) {
             case 'r':
                 krsort($items_array);
                 break;
-        }
-    return $items_array;
+	}
+	return $items_array;
  }       
 
 function get_the_file($file){
-    //$filename = 'cities.txt';
     $handle = fopen($file, 'r');
     $contents = fread($handle, filesize($file));
     $contentsArray = explode("\n", $contents);
@@ -89,13 +98,11 @@ function get_the_file($file){
             unset($contentsArray[$i]);
             array_values($contentsArray);
         }
-        else {}
     }   
     return $contentsArray;
 }
 
 function save_the_file($filename, $array){
-
     $handle = fopen($filename, 'w+');
     foreach ($array as $item) {
         fwrite($handle, PHP_EOL . $item);
@@ -103,7 +110,7 @@ function save_the_file($filename, $array){
     fclose($handle);
     return;
 }
-// The loop!
+
 do {
     echo `clear`;
     // Show the menu options
